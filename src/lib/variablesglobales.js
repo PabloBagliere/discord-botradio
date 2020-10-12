@@ -1,6 +1,7 @@
 const connection = {
   Con: null,
   Dispatcher: null,
+  volumen: 100,
   set setCon(conet) {
     this.Con = conet;
   },
@@ -12,6 +13,12 @@ const connection = {
   },
   get getDispatcher() {
     return this.Dispatcher;
+  },
+  set setVolumen(vol) {
+    this.volumen = vol;
+  },
+  get getVolumen() {
+    return this.volumen;
   },
 };
 
