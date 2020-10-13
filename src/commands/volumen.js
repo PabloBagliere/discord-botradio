@@ -6,10 +6,6 @@ module.exports = {
   aliases: ['v'],
   execute(message, args) {
     const { connection } = require('../lib/connection');
-    if (!message.member.voice.channel) {
-      message.channel.send('¡Usted no esta conectado a ningun canal de voz!');
-      return;
-    }
     if (!args.length) {
       message.channel.send(`El volumen actual es de ${connection.getVolumen}`);
       message.channel.send(

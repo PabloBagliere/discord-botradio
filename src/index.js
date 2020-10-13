@@ -34,6 +34,11 @@ client.on('message', async (message) => {
       (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
     );
   if (!command) return;
+  if (!message.member.voice.channel) {
+    return message.channel.send(
+      '¡Usted no esta conectado a ningun canal de voz!'
+    );
+  }
   try {
     command.execute(message, args);
   } catch (error) {

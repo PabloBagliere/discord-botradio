@@ -42,4 +42,4 @@ const radios = {
   },
 };
 
-exports.radio = radios;
+exports.radios = radios;

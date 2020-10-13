@@ -6,10 +6,8 @@ module.exports = {
   execute(message, args) {
     const { connection } = require('../lib/connection');
     const { join } = require('../lib/messageEmbed');
-    if (connection.getCon === null || !message.member.voice.channel) {
-      message.channel.send(
-        '¡El bot no esta conectado a ningun canal de voz o Usted no esta conectado a ningun canal de voz!'
-      );
+    if (connection.getCon === null) {
+      message.channel.send('¡El bot no esta conectado a ningun canal de voz!');
       return;
     }
     connection.getCon.then((con) => {

@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { radio } = require('./radios');
 
 const messageError = (error) => {
   const msgEmbed = new Discord.MessageEmbed()
@@ -14,13 +13,12 @@ const messageError = (error) => {
 };
 
 const messageRadio = (r) => {
-  const RADIO = radio.getRadio(r);
   const msgEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
-    .setTitle(`Radio: ${RADIO.name}`)
-    .setThumbnail(RADIO.image)
+    .setTitle(`Radio: ${r.name}`)
+    .setThumbnail(r.image)
     .setDescription(
-      `Usted esta escuchando ahora ${RADIO.name} de la estacion ${RADIO.estacion} `
+      `Usted esta escuchando ahora ${r.name} de la estacion ${r.estacion} `
     );
   return msgEmbed;
 };
