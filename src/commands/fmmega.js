@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'fmboing',
-  description: 'sounds FMBoing',
+  name: 'fmmega',
+  description: 'sounds Mega',
   guildOnly: true,
-  aliases: ['boing'],
+  aliases: ['mega'],
   execute(message, args) {
     const { connection } = require('../lib/connection');
     const { radio } = require('../lib/messageEmbed');
@@ -13,7 +13,9 @@ module.exports = {
       return;
     }
     connection.getCon.then((con) => {
-      connection.setDispatcher = con.play('http://200.58.106.247:8626/');
+      connection.setDispatcher = con.play(
+        'https://mega.stweb.tv/mega983/live/chunks.m3u8'
+      );
     });
     message.channel.send(radio(this.name));
   },

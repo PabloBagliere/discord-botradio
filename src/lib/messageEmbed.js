@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { radio } = require('./radios');
 
 const messageError = (error) => {
   const msgEmbed = new Discord.MessageEmbed()
@@ -12,4 +13,48 @@ const messageError = (error) => {
   return msgEmbed;
 };
 
-module.exports = messageError;
+const messageRadio = (r) => {
+  const RADIO = radio.getRadio(r);
+  const msgEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle(`Radio: ${RADIO.name}`)
+    .setThumbnail(RADIO.image)
+    .setDescription(
+      `Usted esta escuchando ahora ${RADIO.name} de la estacion ${RADIO.estacion} `
+    );
+  return msgEmbed;
+};
+
+const messageConenction = (message, accion) => {
+  let msgEmbed;
+  switch (accion) {
+    case 'conection':
+      msgEmbed = new Discord.MessageEmbed()
+        .setColor('GREEN')
+        .setTitle(`BOT Conectado:`)
+        .setThumbnail(
+          'https://upload.wikimedia.org/wikipedia/commons/a/ac/Crystal_Project_success.png'
+        )
+        .setDescription(
+          `Hola ${message.member} usted acaba de conectar al bot al canal ${message.member.voice.channel} desde el canal ${message.channel}`
+        );
+      break;
+    case 'disconnection':
+      msgEmbed = new Discord.MessageEmbed()
+        .setColor('RED')
+        .setTitle(`BOT desconectado:`)
+        .setThumbnail(
+          'https://upload.wikimedia.org/wikipedia/commons/0/0c/Crystal_Clear_action_exit.png'
+        )
+        .setDescription(
+          `Hola ${message.member} usted acaba de desconectar al bot del canal ${message.member.voice.channel} desde el canal ${message.channel}`
+        );
+    default:
+      break;
+  }
+  return msgEmbed;
+};
+
+exports.error = messageError;
+exports.radio = messageRadio;
+exports.join = messageConenction;

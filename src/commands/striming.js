@@ -1,11 +1,11 @@
 module.exports = {
-  name: 'fmboing',
-  description: 'sounds FMBoing',
+  name: 'striming',
+  description: 'sounds striming',
   guildOnly: true,
-  aliases: ['boing'],
+  aliases: ['vivo', 's'],
   execute(message, args) {
     const { connection } = require('../lib/connection');
-    const { radio } = require('../lib/messageEmbed');
+    const ytdl = require('ytdl-core');
     if (connection.getCon === null) {
       message.channel.send(
         '¡El bot no esta conectado a ningun canal de voz o Usted no esta conectado a ningun canal de voz!'
@@ -13,8 +13,12 @@ module.exports = {
       return;
     }
     connection.getCon.then((con) => {
-      connection.setDispatcher = con.play('http://200.58.106.247:8626/');
+      connection.setDispatcher = con.play(
+        ytdl('https://www.youtube.com/watch?v=9SldRxTEb2U', {
+          filter: 'audioonly',
+          begin: Date.now(),
+        })
+      );
     });
-    message.channel.send(radio(this.name));
   },
 };

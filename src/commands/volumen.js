@@ -1,8 +1,11 @@
 module.exports = {
   name: 'volumen',
   description: 'Change bot volume',
+  usage: '<volumen>',
+  guildOnly: true,
+  aliases: ['v'],
   execute(message, args) {
-    const { connection } = require('../lib/variablesglobales');
+    const { connection } = require('../lib/connection');
     if (!message.member.voice.channel) {
       message.channel.send('¡Usted no esta conectado a ningun canal de voz!');
       return;
